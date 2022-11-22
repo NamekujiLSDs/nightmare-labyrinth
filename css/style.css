@@ -1,0 +1,15 @@
+*,
+* * {
+    font-family: 'Yuji Syuku', serif;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+#game {
+    border: 2px solid;
+    height: 600px;
+    width: 800px;
+}
