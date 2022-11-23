@@ -1,25 +1,12 @@
 window.onload = function () {
   start();
 };
-let cs = "";
-const w = ["1", "15", "10", "5", "20", "5", "", "w"];
-const a = ["1", "10", "5", "10", "10", "20", "", "a"];
-const m = ["1", "10", "5", "20", "12", "8", "", "m"];
-const v = ["1", "11", "11", "11", "11", "11", "", "v"];
-
-// W = Warrior
-// A = Assassin
-// M = Mage
-// V = Villeger
-
-// [0] Lv
-// [1] ATK
-// [2] DEF
-// [3] MP
-// [4] HP
-// [5] SPD
-// [6] Name
-// [7] Class
+function csJson() {
+  let url = "js/json/cs.json";
+  fetch(url).then(function (resp) {
+    return resp.json();
+  });
+}
 
 //右クリック・文字選択の無効化
 document.onselectstart = function () {
@@ -36,9 +23,11 @@ const options = {
 //コールバック関数
 function callback(mutationsList, observer) {
   for (const mutation of mutationsList) {
-    if (mutation.target.getAttribute("name") === "startMenu") {
+    const gameNow = mutation.target.getAttribute("name");
+    if (gameNow === "startMenu") {
       document.getElementById("startBtn").addEventListener("click", gSt);
       document.getElementById("loadBtn").addEventListener("click", csL);
+    } else if (gameNow === "gameMenu") {
     }
   }
 }

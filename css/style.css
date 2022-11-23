@@ -23,5 +23,53 @@ body {
     transform: translateX(-50%);
     position: absolute;
     top: 50px;
+    text-shadow: 0 0 8px white;
 }
 
+#gameTitleSub {
+    font-size: 30px;
+    left: calc(50% + 175px);
+    white-space: nowrap;
+    transform: translate(-50%) rotateZ(-20deg);
+    position: absolute;
+    top: 150px;
+    color: red;
+    font-weight: bolder;
+    text-shadow: 0 0 10px black, 0 0 5px red;
+}
+
+
+.btn {
+    background: transparent;
+    color: white;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    border: unset;
+}
+
+#startBtn {
+    left: 50%;
+    bottom: 180px;
+    position: absolute;
+    transition: .5s;
+    border-radius: 10px;
+
+}
+
+#loadBtn {
+    left: 50%;
+    bottom: 100px;
+    position: absolute;
+    transition: .5s;
+    border-radius: 10px;
+
+}
+
+#loadBtn:hover,
+#startBtn:hover {
+    border-left: 5px solid;
+    border-right: 5px solid;
+    padding-left: 30px;
+    padding-right: 30px;
+    transition: .5s;
+}
