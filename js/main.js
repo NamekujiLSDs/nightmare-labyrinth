@@ -27,7 +27,20 @@ function callback(mutationsList, observer) {
     if (gameNow === "startMenu") {
       document.getElementById("startBtn").addEventListener("click", gSt);
       document.getElementById("loadBtn").addEventListener("click", csL);
-    } else if (gameNow === "gameMenu") {
+    } else if (gameNow === "chSct") {
+      charaSelect();
+      document
+        .getElementById("charaSelect1")
+        .addEventListener("mouseover", { name: 1, handleEvent: classHov });
+      document
+        .getElementById("charaSelect2")
+        .addEventListener("mouseover", { name: 2, handleEvent: classHov });
+      document
+        .getElementById("charaSelect3")
+        .addEventListener("mouseover", { name: 3, handleEvent: classHov });
+      document
+        .getElementById("charaSelect4")
+        .addEventListener("mouseover", { name: 4, handleEvent: classHov });
     }
   }
 }
