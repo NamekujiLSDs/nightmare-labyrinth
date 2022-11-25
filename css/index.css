@@ -1,0 +1,10 @@
+*,
+* * {
+    font-family: 'Yuji Syuku', serif;
+    cursor: default;
+}
+
+body {
+    background-color: black;
+    color: white;
+}

@@ -3,24 +3,24 @@ const game = document.getElementById("game");
 function start() {
   console.log("Game Loaded");
   game.innerHTML = "";
-
+  //
   const gameTitle = document.createElement("div");
   gameTitle.textContent = "悪夢の迷宮";
   gameTitle.setAttribute("id", "gameTitle");
   game.appendChild(gameTitle);
-
+  //
   const gameTitleSub = document.createElement("div");
   gameTitleSub.setAttribute("id", "gameTitleSub");
   gameTitleSub.textContent = "- PROJECT N -";
   game.appendChild(gameTitleSub);
-
+  //
   const gameStart = document.createElement("input");
   gameStart.value = "Start";
   gameStart.setAttribute("type", "button");
   gameStart.setAttribute("id", "startBtn");
   gameStart.setAttribute("class", "btn startMenuBtn");
   game.appendChild(gameStart);
-
+  //
   const gameLoad = document.createElement("input");
   gameLoad.value = "Load";
   gameLoad.setAttribute("type", "button");
@@ -28,6 +28,11 @@ function start() {
   gameLoad.setAttribute("class", "btn startMenuBtn");
   game.appendChild(gameLoad);
   game.setAttribute("name", "startMenu");
+  //
+  const cMark = document.createElement("div");
+  cMark.setAttribute("id", "cMark");
+  cMark.textContent = "©Namekuji";
+  game.appendChild(cMark);
 }
 
 function gSt() {
@@ -79,10 +84,9 @@ function charaSelect() {
 
 function csL() {
   alert("この機能は未実装です");
-  //   let csv = prompt("コードをペーストしてください");
 }
 
-function classHov(hovVal) {
+function classHov() {
   if (this.name === 1) {
     let expl = document.getElementById("chExpl");
     expl.innerHTML = `<div id="className"> 戦士</div><div id="explText">高い物理攻撃力と防御力を持つ。<br>移動速度は遅く魔法が苦手</div>`;
