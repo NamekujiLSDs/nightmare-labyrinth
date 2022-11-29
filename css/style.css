@@ -1,7 +1,21 @@
+@import url(https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap);
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 100 700;
+    src: url(/fonts/icon.woff2) format('woff2');
+}
+
+
 *,
 * * {
     font-family: 'Yuji Syuku', serif;
     cursor: default;
+}
+
+*:focus {
+    outline: unset !important;
 }
 
 body {
@@ -19,6 +33,14 @@ body {
     transform: translate(-50%, -50%);
     background: url(/img/bg/bg_fog_1.png) #222;
     background-size: cover;
+}
+
+#cMark {
+    font-size: 15px;
+    font-family: sans-serif;
+    right: 5px;
+    bottom: 5px;
+    position: absolute;
 }
 
 #gameTitle {
@@ -157,10 +179,28 @@ body {
     color: transparent;
 }
 
-#cMark {
-    font-size: 15px;
-    font-family: sans-serif;
-    right: 5px;
-    bottom: 5px;
+#nameInputLabel {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    white-space: nowrap;
+}
+
+#nameInput {
+    background: transparent;
+    color: white;
+    border: unset;
+    border-bottom: 2px solid white;
+    font-size: 20px;
+    text-align: center;
+}
+
+#randNBtn {
+    font-family: 'Material Symbols Outlined';
+    background: transparent;
+    border: unset;
+    color: white;
+    font-size: 25px;
 }
