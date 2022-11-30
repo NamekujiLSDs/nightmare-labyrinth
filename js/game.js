@@ -10,6 +10,7 @@ let stsMM;
 let stsS;
 let stsC;
 let stsN;
+let stsE;
 
 function start() {
   console.log("Game Loaded");
@@ -114,9 +115,23 @@ function charaSelect() {
 function csL() {
   let b64R = prompt("セーブしたコードを入力");
   console.log(b64R);
-  let b64Split = b64R.split("");
-  console.log(b64Split);
-  let b64SplitR = b64Split.reverse();
+
+  b64R2 = b64R.split("");
+  for (i = 0; i < b64R.length; i++) {
+    console.log(b64R2[i]);
+    const isUpperCase = (c) => {
+      return /^[A-Z]+$/g.test(c);
+    };
+
+    console.log(isUpperCase(b64R2[i]));
+    if (isUpperCase(b64R2[i])) {
+      b64R2[i] = b64R2[i].toLowerCase();
+    } else {
+      b64R2[i] = b64R2[i].toUpperCase();
+    }
+  }
+
+  let b64SplitR = b64R2.reverse();
   console.log(b64SplitR);
   let b64Join = b64SplitR.join("");
   console.log(b64Join);
@@ -220,11 +235,11 @@ async function classClick() {
   stsS = result[cN][0].s;
   stsC = result[cN][0].c;
   if (!document.getElementById("nameInput").value) {
-    stsN = "名無しの放浪者";
+    stsN = "名無し";
   } else {
     stsN = document.getElementById("nameInput").value;
   }
-  game.setAttribute("name", "int");
+  game.setAttribute("name", "gameMenu_1");
 }
 
 function intro() {}
@@ -304,27 +319,68 @@ function stats() {
   statsHolder.appendChild(pSC);
 }
 
+async function gameMenu(val) {
+  const msgJsonUrl = "./js/json/msg.json";
+  let result = await fetch(msgJsonUrl);
+  let msgJson = await result.json();
+  console.log(msgJson);
+
+  const menuHolderC = document.createElement("div");
+  menuHolderC.setAttribute("id", "gameMenu");
+  game.appendChild(menuHolderC);
+
+  const menuItem1 = document.createElement("input");
+  menuItem1.setAttribute("id", "menuItem1");
+  menuItem1.setAttribute("type", "button");
+  menuItem1.value = msgJson[val][1];
+
+  const menuItem2 = document.createElement("input");
+  menuItem2.setAttribute("id", "menuItem2");
+  menuItem2.setAttribute("type", "button");
+  menuItem2.value = msgJson[val][2];
+
+  const menuItem3 = document.createElement("input");
+  menuItem3.setAttribute("id", "menuItem3");
+  menuItem3.setAttribute("type", "button");
+  menuItem3.value = msgJson[val][3];
+
+  const menuItem4 = document.createElement("input");
+  menuItem4.setAttribute("id", "menuItem4");
+  menuItem4.setAttribute("type", "button");
+  menuItem4.value = msgJson[val][4];
+
+  document.getElementById("gameMenu").appendChild(menuItem1);
+  document.getElementById("gameMenu").appendChild(menuItem2);
+  document.getElementById("gameMenu").appendChild(menuItem3);
+  document.getElementById("gameMenu").appendChild(menuItem4);
+
+  arato();
+}
+
+//データのエクスポート
+//statusを出力→B64に変換→反転→大文字小文字入れ替え→結合
 function saveData() {
   const stats = `{ "l":"${stsL}","a":"${stsA}","d":"${stsD}","h":"${stsH}","hm":"${stsHM}","m":"${stsM}","mm":"${stsMM}","s":"${stsS}","c":"${stsC}","n":"${stsN}"}`;
-  console.log(stats);
   const b64Stats = window.btoa(unescape(encodeURIComponent(stats)));
-  console.log(b64Stats);
   let b64Split = b64Stats.split("");
-  console.log(b64Split);
   let b64SplitR = b64Split.reverse();
   console.log(b64SplitR);
+  for (i = 0; i < b64Stats.length; i++) {
+    console.log(b64SplitR[i]);
+    const isUpperCase = (c) => {
+      return /^[A-Z]+$/g.test(c);
+    };
+    console.log(isUpperCase(b64SplitR[i]));
+    if (isUpperCase(b64SplitR[i])) {
+      b64SplitR[i] = b64SplitR[i].toLowerCase();
+    } else {
+      b64SplitR[i] = b64SplitR[i].toUpperCase();
+    }
+  }
   let b64Join = b64SplitR.join("");
   console.log(b64Join);
 }
 
-// {
-//   stsL = result[cN][0].l;
-//   stsA = result[cN][0].a;
-//   stsD = result[cN][0].d;
-//   stsH = result[cN][0].h;
-//   stsHM = result[cN][0].h;
-//   stsM = result[cN][0].m;
-//   stsMM = result[cN][0].m;
-//   stsS = result[cN][0].s;
-//   stsC = result[cN][0].c;
-// }
+function arato() {
+  console.log("aho");
+}

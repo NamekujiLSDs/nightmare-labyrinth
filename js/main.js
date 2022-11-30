@@ -53,9 +53,9 @@ function callback(mutationsList, observer) {
       document
         .getElementById("charaSelect4")
         .addEventListener("click", { name: "j4", handleEvent: classClick });
-    } else if (gameNow === "int") {
+    } else if (gameNow === "gameMenu_1") {
       stats();
-      // intro();
+      gameMenu(1);
     }
   }
 }
