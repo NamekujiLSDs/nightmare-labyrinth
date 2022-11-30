@@ -56,9 +56,23 @@ function callback(mutationsList, observer) {
     } else if (gameNow === "gameMenu_1") {
       stats();
       gameMenu(1);
+      messageHolder();
+    } else if (gameNow === "gameMenu_2") {
+      stats();
+      gameMenu(2);
+      messageHolder();
+    } else if (gameNow === "gameMenu_3") {
+      stats();
+      gameMenu(3);
+      messageHolder();
+    } else if (gameNow === "gameMenu_4") {
+      stats();
+      gameMenu(4);
+      messageHolder();
     }
   }
 }
+
 //ターゲット要素をDOMで取得
 const target = document.getElementById("game");
 //インスタンス化

@@ -207,5 +207,50 @@ body {
 
 #gameMenu {
     border: 2px solid white;
+    display: grid;
+    position: absolute;
+    bottom: 10px;
+    width: 380px;
+    left: 10px;
+    height: 200px;
+    grid-template-columns: 1fr 1fr;
+}
+
+div#statsHolder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 380px;
+    right: 10px;
+    height: 200px;
+    bottom: 10px;
+    border: 2px solid white;
+    position: absolute;
+}
+
+div#playerName,
+div#playerClass,
+div#playerLvl,
+div#playerAtk,
+div#playerDef,
+div#playerHP,
+div#playerMana,
+div#playerSpeed {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid gray;
+    margin: 5px;
+}
+
+.menuBtn {
+    margin: 5px;
+    background: transparent;
+    border: gray 2px solid;
+    color: white;
+    font-size: 30px;
+    text-shadow: 0 0 4px black;
+}
+
+.menuBtn:hover {
+    background-color: #fff2;
 }

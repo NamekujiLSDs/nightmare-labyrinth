@@ -11,9 +11,10 @@ let stsS;
 let stsC;
 let stsN;
 let stsE;
+let stsG;
 
 function start() {
-  console.log("Game Loaded");
+  // console.log("Game Loaded");
   game.innerHTML = "";
   //
   const gameTitle = document.createElement("div");
@@ -114,16 +115,16 @@ function charaSelect() {
 //セーブデータの読み込み
 function csL() {
   let b64R = prompt("セーブしたコードを入力");
-  console.log(b64R);
+  // console.log(b64R);
 
   b64R2 = b64R.split("");
   for (i = 0; i < b64R.length; i++) {
-    console.log(b64R2[i]);
+    // console.log(b64R2[i]);
     const isUpperCase = (c) => {
       return /^[A-Z]+$/g.test(c);
     };
 
-    console.log(isUpperCase(b64R2[i]));
+    // console.log(isUpperCase(b64R2[i]));
     if (isUpperCase(b64R2[i])) {
       b64R2[i] = b64R2[i].toLowerCase();
     } else {
@@ -132,11 +133,11 @@ function csL() {
   }
 
   let b64SplitR = b64R2.reverse();
-  console.log(b64SplitR);
+  // console.log(b64SplitR);
   let b64Join = b64SplitR.join("");
-  console.log(b64Join);
+  // console.log(b64Join);
   let savedData = decodeURIComponent(escape(atob(b64Join)));
-  console.log(savedData);
+  // console.log(savedData);
   let result = JSON.parse(savedData);
   console.log(result);
   stsL = result.l;
@@ -148,6 +149,7 @@ function csL() {
   stsMM = result.m;
   stsS = result.s;
   stsC = result.c;
+  stsE = result.e;
 }
 
 //クラスをホバーしたときの説明文
@@ -224,7 +226,7 @@ async function classClick() {
   console.log(cN);
   const getJson = await fetch("js/json/cs.json");
   const result = await getJson.json();
-  console.log(result);
+  // console.log(result);
   stsL = result[cN][0].l;
   stsA = result[cN][0].a;
   stsD = result[cN][0].d;
@@ -234,6 +236,7 @@ async function classClick() {
   stsMM = result[cN][0].m;
   stsS = result[cN][0].s;
   stsC = result[cN][0].c;
+  stsE = result[cN][0].e;
   if (!document.getElementById("nameInput").value) {
     stsN = "名無し";
   } else {
@@ -323,7 +326,7 @@ async function gameMenu(val) {
   const msgJsonUrl = "./js/json/msg.json";
   let result = await fetch(msgJsonUrl);
   let msgJson = await result.json();
-  console.log(msgJson);
+  // console.log(msgJson);
 
   const menuHolderC = document.createElement("div");
   menuHolderC.setAttribute("id", "gameMenu");
@@ -332,45 +335,51 @@ async function gameMenu(val) {
   const menuItem1 = document.createElement("input");
   menuItem1.setAttribute("id", "menuItem1");
   menuItem1.setAttribute("type", "button");
+  menuItem1.setAttribute("class", "menuBtn");
+  menuItem1.setAttribute("onclick", "menuClick(" + val + ",1)");
   menuItem1.value = msgJson[val][1];
 
   const menuItem2 = document.createElement("input");
   menuItem2.setAttribute("id", "menuItem2");
   menuItem2.setAttribute("type", "button");
+  menuItem2.setAttribute("class", "menuBtn");
+  menuItem2.setAttribute("onclick", "menuClick(" + val + ",2)");
   menuItem2.value = msgJson[val][2];
 
   const menuItem3 = document.createElement("input");
   menuItem3.setAttribute("id", "menuItem3");
   menuItem3.setAttribute("type", "button");
+  menuItem3.setAttribute("class", "menuBtn");
+  menuItem3.setAttribute("onclick", "menuClick(" + val + ",3)");
   menuItem3.value = msgJson[val][3];
 
   const menuItem4 = document.createElement("input");
   menuItem4.setAttribute("id", "menuItem4");
   menuItem4.setAttribute("type", "button");
+  menuItem4.setAttribute("class", "menuBtn");
+  menuItem4.setAttribute("onclick", "menuClick(" + val + ",4)");
   menuItem4.value = msgJson[val][4];
 
   document.getElementById("gameMenu").appendChild(menuItem1);
   document.getElementById("gameMenu").appendChild(menuItem2);
   document.getElementById("gameMenu").appendChild(menuItem3);
   document.getElementById("gameMenu").appendChild(menuItem4);
-
-  arato();
 }
 
 //データのエクスポート
 //statusを出力→B64に変換→反転→大文字小文字入れ替え→結合
 function saveData() {
-  const stats = `{ "l":"${stsL}","a":"${stsA}","d":"${stsD}","h":"${stsH}","hm":"${stsHM}","m":"${stsM}","mm":"${stsMM}","s":"${stsS}","c":"${stsC}","n":"${stsN}"}`;
+  const stats = `{ "l":"${stsL}","a":"${stsA}","d":"${stsD}","h":"${stsH}","hm":"${stsHM}","m":"${stsM}","mm":"${stsMM}","s":"${stsS}","c":"${stsC}","n":"${stsN}", "e":"${stsE}"} `;
   const b64Stats = window.btoa(unescape(encodeURIComponent(stats)));
   let b64Split = b64Stats.split("");
   let b64SplitR = b64Split.reverse();
-  console.log(b64SplitR);
+  // console.log(b64SplitR);
   for (i = 0; i < b64Stats.length; i++) {
-    console.log(b64SplitR[i]);
+    // console.log(b64SplitR[i]);
     const isUpperCase = (c) => {
       return /^[A-Z]+$/g.test(c);
     };
-    console.log(isUpperCase(b64SplitR[i]));
+    // console.log(isUpperCase(b64SplitR[i]));
     if (isUpperCase(b64SplitR[i])) {
       b64SplitR[i] = b64SplitR[i].toLowerCase();
     } else {
@@ -381,6 +390,12 @@ function saveData() {
   console.log(b64Join);
 }
 
-function arato() {
-  console.log("aho");
+function messageHolder() {
+  const messageHolderC = document.createElement("div");
+  messageHolderC.setAttribute("id", "messageHolder");
+  game.appendChild(messageHolderC);
+}
+
+function menuClick(val, val2) {
+  console.log(val);
 }
