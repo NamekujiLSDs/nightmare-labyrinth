@@ -110,10 +110,32 @@ function charaSelect() {
   game.appendChild(chExpl);
 }
 
+//セーブデータの読み込み
 function csL() {
-  alert("\u3053\u306e\u6a5f\u80fd\u306f\u672a\u5b9f\u88c5\u3067\u3059");
+  let b64R = prompt("セーブしたコードを入力");
+  console.log(b64R);
+  let b64Split = b64R.split("");
+  console.log(b64Split);
+  let b64SplitR = b64Split.reverse();
+  console.log(b64SplitR);
+  let b64Join = b64SplitR.join("");
+  console.log(b64Join);
+  let savedData = decodeURIComponent(escape(atob(b64Join)));
+  console.log(savedData);
+  let result = JSON.parse(savedData);
+  console.log(result);
+  stsL = result.l;
+  stsA = result.a;
+  stsD = result.d;
+  stsH = result.h;
+  stsHM = result.h;
+  stsM = result.m;
+  stsMM = result.m;
+  stsS = result.s;
+  stsC = result.c;
 }
 
+//クラスをホバーしたときの説明文
 function classHov() {
   if (this.name === 1) {
     let expl = document.getElementById("chExpl");
@@ -198,55 +220,7 @@ async function classClick() {
   stsS = result[cN][0].s;
   stsC = result[cN][0].c;
   if (!document.getElementById("nameInput").value) {
-    let list1 = [
-      "流浪の",
-      "名無しの",
-      "紅蓮の",
-      "漆黒の",
-      "純白の",
-      "墓守の",
-      "平凡な",
-      "退屈な",
-      "傀儡の",
-      "強欲な",
-      "破壊の",
-      "祝福の",
-      "極光の",
-      "天上の",
-      "黄泉の",
-      "深淵の",
-      "疾風の",
-      "暗躍の",
-      "不可視の",
-      "創造の",
-      "創世の",
-      "双璧の",
-      "氷結の",
-      "錬鉄の",
-    ];
-    let list2 = [
-      "悪夢",
-      "道化師",
-      "支配者",
-      "荒鷲",
-      "雷帝",
-      "征服者",
-      "貴公子",
-      "剣士",
-      "暗殺者",
-      "魔導士",
-      "王",
-      "騎士",
-      "勇者",
-      "怪物",
-      "永久機関",
-      "覇者",
-      "統一者",
-      "謳声",
-    ];
-    stsN =
-      list1[Math.floor(Math.random() * list1.length)] +
-      list2[Math.floor(Math.random() * list2.length)];
+    stsN = "名無しの放浪者";
   } else {
     stsN = document.getElementById("nameInput").value;
   }
@@ -270,21 +244,29 @@ function stats() {
   pCC.setAttribute("id", "playerClass");
   let job;
   if (stsC === "w" && stsL <= 100) {
-    job = "戦士";
+    job = "\u6226\u58eb";
+    //戦士
   } else if (stsC === "w" && stsL >= 100) {
-    job = "聖騎士";
+    job = "\u8056\u9a0e\u58eb";
+    //聖騎士
   } else if (stsC === "a" && stsL <= 100) {
-    job = "暗殺者";
+    job = "\u6697\u6bba\u8005";
+    //暗殺者
   } else if (stsC === "a" && stsL >= 100) {
-    job = "火影";
+    job = "\u706b\u5f71";
+    //火影
   } else if (stsC === "m" && stsL <= 100) {
-    job = "魔法使い";
+    job = "\u9b54\u6cd5\u4f7f\u3044";
+    //魔法使い
   } else if (stsC === "m" && stsL >= 100) {
-    job = "大賢者";
+    job = "\u5927\u8ce2\u8005";
+    //大賢者
   } else if (stsC === "v" && stsL <= 100) {
-    job = "村人";
+    job = "\u6751\u4eba";
+    //村人
   } else if (stsC === "v" && stsL >= 100) {
-    job = "勇者";
+    job = "\u52c7\u8005";
+    //勇者
   }
   pCC.textContent = "職業：" + job;
 
@@ -321,3 +303,28 @@ function stats() {
   statsHolder.appendChild(pMC);
   statsHolder.appendChild(pSC);
 }
+
+function saveData() {
+  const stats = `{ "l":"${stsL}","a":"${stsA}","d":"${stsD}","h":"${stsH}","hm":"${stsHM}","m":"${stsM}","mm":"${stsMM}","s":"${stsS}","c":"${stsC}","n":"${stsN}"}`;
+  console.log(stats);
+  const b64Stats = window.btoa(unescape(encodeURIComponent(stats)));
+  console.log(b64Stats);
+  let b64Split = b64Stats.split("");
+  console.log(b64Split);
+  let b64SplitR = b64Split.reverse();
+  console.log(b64SplitR);
+  let b64Join = b64SplitR.join("");
+  console.log(b64Join);
+}
+
+// {
+//   stsL = result[cN][0].l;
+//   stsA = result[cN][0].a;
+//   stsD = result[cN][0].d;
+//   stsH = result[cN][0].h;
+//   stsHM = result[cN][0].h;
+//   stsM = result[cN][0].m;
+//   stsMM = result[cN][0].m;
+//   stsS = result[cN][0].s;
+//   stsC = result[cN][0].c;
+// }
